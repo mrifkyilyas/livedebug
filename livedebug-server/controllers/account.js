@@ -14,6 +14,7 @@ class AccountController {
 
   static newAccount(req, res) {
     let acc = null;
+    console.log('masuk sini? new acoount cont')
 
     if (req.body.hasOwnProperty('balance')) {
       acc = {
@@ -22,6 +23,7 @@ class AccountController {
       }
     } else {
       acc = {
+        balance:500000,
         userId: req.user._id
       }
     }

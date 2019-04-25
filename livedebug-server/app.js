@@ -12,4 +12,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', index);
 
+
+app.listen((3000),()=>{
+    console.log('working on')
+})
 module.exports = app

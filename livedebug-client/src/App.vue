@@ -9,10 +9,12 @@
 import '@/assets/style.css'
 import Navigation from '@/components/Navigation'
 
+
 export default {
   data () {
     return {
-      favorites: []
+      favorites: [],
+      myFavorite : []
     }
   },
 

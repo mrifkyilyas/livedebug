@@ -11,3 +11,6 @@ router.post('/verify', userController.verify);
 router.use('/accounts', account);
 router.get('/transactions', transaction);
 
+
+module.exports = router
+

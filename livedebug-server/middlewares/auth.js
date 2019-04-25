@@ -6,10 +6,14 @@ const Transaction = require('../models/transaction');
 module.exports = {
   authentication: function(req, res, next) {
     let token = req.header.token;
+    console.log(token)
+    console.log('authen')
 
     if (token) {
+      console.log('ada token')
       res.status(401).json({ error: 'You must login to access this endpoint' });
     } else {
+      console.log('gak ada token')
       let decoded = jwt.verify(token);
       User
        .findOne({
@@ -17,10 +21,13 @@ module.exports = {
        })
        .then(user => {
          if(user) {
+           console.log(user,'user authen')
            req.user = user;
            next();
          } else {
+          console.log('user invalid')
            res.status(401).json({ err: 'User is not valid' });
+           
          }
        })
        .catch(err => {
@@ -30,8 +37,11 @@ module.exports = {
   },
   authorization: function(req, res, next) {
     let accountNumber = null;
+    console.log('authoriz')
+   
 
-    if (req.params.accountNumber) {
+    if (req.params.accountNumber) { 
+
       accountNumber = req.params.accountNumber
     } else {
       accountNumber = req.body.accountNumber
@@ -53,6 +63,7 @@ module.exports = {
      })
   },
   authForTransfer: function(req, res, next) {
+    console.log('auth for transefer')
     Account.findOne({
       accountNumber: req.body.accountNumberTo
     })

@@ -50,7 +50,7 @@ describe('Users', function() {
        })
     })
 
-    it('should return status code 409 with message "Email has been used"', function(done) {
+    it.only('should return status code 409 with message "Email has been used"', function(done) {
       let user = {
         email: 'kosasih@mail.com',
         password: 'kosasihberjalankiankemari',

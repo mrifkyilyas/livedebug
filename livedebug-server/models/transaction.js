@@ -21,6 +21,7 @@ const transactionSchema = new Schema({
 })
 
 transactionSchema.pre('save', function(next) {
+  console.log(this,'hook transaksi')
   Account.findOne({
     _id: this.from,
     balance: { $lte: Number(this.amount)  }
@@ -28,7 +29,7 @@ transactionSchema.pre('save', function(next) {
   .then(updated => {
     if (updated) {
       updated.balance -= this.amount;
-      updated.save();
+      return updated.save();
     } else {
       next({
         message: 'Insufficient balance'

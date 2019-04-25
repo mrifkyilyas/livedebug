@@ -19,7 +19,6 @@ const userSchema = new Schema({
         return User.find({
               _id: { $ne: this._id },
               email: value
-           })
           .then( data => {
               if(data.length !== 0) {
                   throw 'Email has been used';
@@ -45,6 +44,7 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', function(next) {
+  console.log(this,'hook userrrr')
   this.password = register.hashPassword(this.password);
   this.verificationCode = register.generateNum(6);
   next()

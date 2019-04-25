@@ -17,7 +17,9 @@ const accountSchema = new Schema({
 })
 
 accountSchema.pre('save', function(next) {
+  console.log(this, 'hook acoount')
   this.accountNumber = String(Math.random()).substring(2,12);
+  next()
 
 })
 
